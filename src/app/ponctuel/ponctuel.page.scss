@@ -1,0 +1,14 @@
+ion-content {
+  --background: linear-gradient(to bottom right, rgba(74, 201, 89, 0.2), rgba(83, 151, 67, 0.2));
+}
+
+.postcard {
+  display: table-cell;
+  width: 100%;
+}
+
+ion-input {
+  --background: #FFFFFF;
+  border: 1px solid grey;
+  border-radius: 10px;
+}

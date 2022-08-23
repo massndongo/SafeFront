@@ -1,0 +1,67 @@
+<ion-content>
+  <div
+    style="height: 100vh; background: linear-gradient(to bottom right, rgba(74, 201, 89, 0.2), rgba(83, 151, 67, 0.2));">
+    <div style="height: 100%; align-items: center; justify-content: center; display: flex;">
+      <form [formGroup]="myForm" class="ion-margin-vertical" (ngSubmit)="onSubmit()">
+        <ion-grid *ngIf="step === 0">
+          <ion-row>
+
+            <ion-col size="12" class="ion-text-center ion-margin-vertical">
+              <ion-label> <h1>Cliquez ci-dessous pour photographier votre ordonnance</h1> </ion-label>
+            </ion-col>
+
+            <ion-col size="12" class="ion-text-center">
+              <ion-button style="--background: #434592" (click)="addNewToGallery()"
+                class="ion-margin-vertical ion-margin-horizontal">
+                <ion-icon slot="start" name="camera"></ion-icon>
+                PHOTOGRAPHIER L'ORDONNANCE
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <div class="ion-margin ion-padding ion-text-center" [hidden]="photo === null">
+            <img [src]="photo" height="300" width="300" style="border-radius: 10%; border: 2px solid grey">
+          </div>
+        </ion-grid>
+
+        <!--Coordonnées du client-->
+        <ion-grid *ngIf="step === 1">
+          <ion-row>
+            <ion-col size="12" class="ion-text-center">
+              <ion-label><b>Saisissez vos informations</b></ion-label>
+            </ion-col>
+            <ion-col size="12" class="ion-margin-vertical">
+              <ion-input class="ion-padding-horizontal" type="text" name="nomClient" formControlName="nomClient"
+                required placeholder="Votre nom complet"></ion-input>
+            </ion-col>
+            <ion-col size="12">
+              <ion-input class="ion-padding-horizontal" type="text" name="numeroClient" formControlName="numeroClient"
+                required placeholder="Votre numéro de téléphone"></ion-input>
+            </ion-col>
+            <ion-col size="12" class="ion-margin-vertical">
+              <ion-input class="ion-padding-horizontal" type="text" name="adresse" formControlName="adresse" required
+                placeholder="Adresse de livraison"></ion-input>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12" class="ion-text-center" style="display: flex; justify-content: center">
+              <ion-button color="primary" *ngIf="step > 0" (click)="step = step - 1">Précédent</ion-button>
+              <ion-button class="ion-margin-horizontal" color="primary" [hidden]="step >= 1 || clicked === false"
+                (click)="suivant()">Suivant</ion-button>
+            </ion-col>
+            <ion-col size="12" class="ion-text-center">
+              <ion-button expand="block" color="danger" (click)="cancel()">Annuler</ion-button>
+            </ion-col>
+            <ion-col size="12" class="ion-text-center" [hidden]="step < 1">
+              <ion-button type="submit" expand="block" color="success">Commander</ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+      </form>
+
+    </div>
+  </div>
+</ion-content>
